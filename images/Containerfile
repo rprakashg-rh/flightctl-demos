@@ -1,0 +1,9 @@
+FROM registry.redhat.io/rhel9/rhel-bootc:9.5
+
+ADD etc etc
+
+RUN dnf install -y flightctl-agent && \
+    systemctl enable flightctl-agent.service
+
+RUN rm -rf /opt && \
+    mkdir -p /opt/crio
