@@ -4,7 +4,7 @@ Description=Hello world app
 [Container]
 Label=app=helloworld
 Name=helloworld-app
-Image=quay.io/rprakashg/helloworld
+Image=quay.io/rgopinat/helloworld
 Port=8080:80
 Restart=always
 
