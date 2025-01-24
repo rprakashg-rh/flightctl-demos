@@ -1,0 +1,18 @@
+apiVersion: v1alpha1
+kind: Fleet
+metadata:
+  name: "demo-fleet"
+spec:
+  selector:
+    matchLabels:
+      fleet: "demo-fleet"
+  template:
+    spec:
+      os:
+        image: quay.io/rprakashg/
+      config:
+      - name: quadlets
+        gitRef:
+          repository: flightctl-demos
+          targetRevision: main
+          path: /apps/
