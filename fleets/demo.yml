@@ -9,10 +9,10 @@ spec:
   template:
     spec:
       os:
-        image: quay.io/rprakashg/
+        image: quay.io/rgopinat/rhde-bootc
       config:
       - name: quadlets
         gitRef:
           repository: flightctl-demos
           targetRevision: main
-          path: /apps/
+          path: /apps/helloworld
