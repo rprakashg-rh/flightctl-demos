@@ -15,4 +15,4 @@ spec:
         gitRef:
           repository: flightctl-demos
           targetRevision: main
-          path: /apps/helloworld
+          path: /apps/haproxy/configuration

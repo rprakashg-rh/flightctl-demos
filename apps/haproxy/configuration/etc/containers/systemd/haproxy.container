@@ -1,0 +1,12 @@
+[Unit]
+Description=HAProxy container that redirects to Red Hat Device Edge Page
+
+[Container]
+Label=app=haproxy
+Name=haproxy-app
+Image=quay.io/rgopinat/haproxy
+Port=80:80
+Restart=always
+
+[Install]
+WantedBy=multi-user.target default.target
