@@ -7,3 +7,8 @@ RUN dnf install -y flightctl-agent && \
 
 RUN rm -rf /opt && \
     mkdir -p /opt/crio
+
+## Embedding flightctl configuration and certificates into image
+ADD config.yaml /etc/flightctl/
+ADD ca.crt /etc/flightctl/certs/
+ADD client-enrollment.* /etc/flightctl/certs/
