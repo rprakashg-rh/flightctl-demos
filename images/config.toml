@@ -1,0 +1,18 @@
+[customizations.installer.kickstart]
+contents = """
+lang en_GB.UTF-8
+keyboard uk
+timezone CET
+
+# network configuration
+network --bootproto=dhcp --device=link --activate --onboot=on
+
+# user setup
+user --name redhat --password password --plaintext --groups wheel
+rootpw --lock
+
+zerombr
+clearpart --all --initlabel
+autopart --type=plain
+reboot --eject
+"""
