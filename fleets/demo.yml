@@ -43,7 +43,7 @@ spec:
       hooks:
         afterUpdating:
         - if:
-            - path: /etc/containers/systemd/
+            - path: /etc/containers/systemd/haproxy.container
               op: [created, updated, removed]
           run: | 
             systemctl daemon-reload
