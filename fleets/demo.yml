@@ -16,3 +16,34 @@ spec:
           repository: flightctl-demos
           targetRevision: main
           path: /apps/haproxy/configuration
+      resources:
+      - monitorType: CPU
+        alertRules:
+          - severity: Warning
+            duration: 10m
+            percentage: 70
+            description: 'CPU load is >70% for more than 10 minutes'
+          - severity: Critical
+            duration: 10m
+            percentage: 90
+            description: 'CPU load is >90% for more than 10 minutes'          
+        samplingInterval: 30s
+      - monitorType: Disk
+        samplingInterval: 5s
+        path: /
+        alertRules:
+        - severity: Warning
+          duration: 30m
+          percentage: 75
+          description: Disk space for application data is >75% full for over 30m.
+        - severity: Critical
+          duration: 10m
+          percentage: 90
+          description: Disk space for application data is >90% full over 10m.
+      hooks:
+        afterUpdating:
+        - if:
+            - path: /etc/containers/systemd/
+              op: [created, updated, removed]
+          run: | 
+            systemctl daemon-reload
