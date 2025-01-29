@@ -11,8 +11,9 @@ network --bootproto=dhcp --device=link --activate --onboot=on
 user --name redhat --password password --plaintext --groups wheel
 rootpw --lock
 
+text --non-interactive
 zerombr
 clearpart --all --initlabel
-autopart --type=plain
+autopart --type=lvm
 reboot --eject
 """

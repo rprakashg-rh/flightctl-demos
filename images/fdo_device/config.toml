@@ -1,0 +1,30 @@
+[customizations.fdo]
+manufacturing_server_url = ""
+diun_pub_key_insecure = "true"
+
+[customizations.installer.kickstart]
+contents = """
+lang en_GB.UTF-8
+keyboard uk
+timezone CET
+
+# network configuration
+network --bootproto=dhcp --device=link --activate --onboot=on
+
+# user setup
+user --name redhat --password password --plaintext --groups wheel
+rootpw --lock
+
+text --non-interactive
+zerombr
+clearpart --all --initlabel
+autopart --type=lvm
+reboot --eject
+
+%post
+export MANUFACTURING_SERVER_URL=""
+export DIUN_PUB_KEY_INSECURE="true"
+
+/usr/libexec/fdo/fdo-manufacturing-client
+%end
+"""

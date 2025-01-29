@@ -1,0 +1,14 @@
+FROM registry.redhat.io/rhel9/rhel-bootc:9.5
+
+ADD etc etc
+
+# install flightctl agent
+RUN dnf install -y flightctl-agent flightctl && \
+    systemctl enable flightctl-agent.service
+
+    # install FDO tools
+RUN dnf install -y fdo-init fdo-client \
+    systemctl enable fdo-client-linuxapp.service
+
+RUN rm -rf /opt && \
+    mkdir -p /opt/crio
