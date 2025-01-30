@@ -1,0 +1,11 @@
+[Unit]
+Description=RHDE Starter
+
+[Container]
+Label=app=rhde-starter-app
+ContainerName=rhde-starter
+Image=quay.io/rgopinat/rhde-starter
+PublishPort=80:80
+
+[Install]
+WantedBy=multi-user.target default.target

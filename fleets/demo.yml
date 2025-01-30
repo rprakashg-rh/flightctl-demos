@@ -9,13 +9,13 @@ spec:
   template:
     spec:
       os:
-        image: quay.io/rgopinat/rhde-bootc
+        image: quay.io/rgopinat/imagemode-rhel
       config:
       - name: quadlets
         gitRef:
           repository: flightctl-demos
           targetRevision: main
-          path: /apps/haproxy/configuration
+          path: /apps/rhde-starter/configuration
       resources:
       - monitorType: CPU
         alertRules:
