@@ -8,22 +8,24 @@ lang en_GB.UTF-8
 keyboard uk
 timezone CET
 
-# network configuration
-network --bootproto=dhcp --device=link --activate --onboot=on
-
-# user setup
-user --name redhat --password password --plaintext --groups wheel
-rootpw --lock
-
 text --non-interactive
 zerombr
 clearpart --all --initlabel
 autopart --type=lvm
-reboot --eject
+
+# user setup
+user --name redhat --password password --plaintext --groups wheel
+rootpw --lock
+# network configuration
+network --bootproto=dhcp --device=link --activate --onboot=on
+poweroff
 
 %post --log=/var/log/anaconda/post-install.log --erroronfail
 export MANUFACTURING_SERVER_URL="http://ec2-34-210-119-200.us-west-2.compute.amazonaws.com:8080"
 export DIUN_PUB_KEY_INSECURE="true"
+
+# For DNS resolution
+echo "nameserver 192.168.1.1" > /etc/resolv.conf
 
 /usr/libexec/fdo/fdo-manufacturing-client
 %end

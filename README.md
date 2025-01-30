@@ -43,7 +43,7 @@ Follow steps below to build an Anaconda ISO installer image
     --pull=newer \
     --security-opt label=type:unconfined_t \
     -v /var/lib/containers/storage:/var/lib/containers/storage \
-    -v $(pwd)/images/device/config.toml:/config.toml -v $(pwd)/output:/output \
+    -v $(pwd)/config.toml:/config.toml -v $(pwd)/output:/output \
     registry.redhat.io/rhel9/bootc-image-builder:latest \
     --type iso \
     --config /config.toml \
@@ -85,7 +85,7 @@ podman push quay.io/rgopinat/imagemode-rhel-fdo
     --pull=newer \
     --security-opt label=type:unconfined_t \
     -v /var/lib/containers/storage:/var/lib/containers/storage \
-    -v $(pwd)/images/fdo_device/config.toml:/config.toml -v $(pwd)/output:/output \
+    -v $(pwd)/config.toml:/config.toml -v $(pwd)/output:/output \
     registry.redhat.io/rhel9/bootc-image-builder:latest \
     --type iso \
     --config /config.toml \
