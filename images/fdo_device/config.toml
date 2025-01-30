@@ -21,7 +21,7 @@ clearpart --all --initlabel
 autopart --type=lvm
 reboot --eject
 
-%post
+%post --log=/var/log/anaconda/post-install.log --erroronfail
 export MANUFACTURING_SERVER_URL="http://ec2-18-236-174-232.us-west-2.compute.amazonaws.com:8080"
 export DIUN_PUB_KEY_INSECURE="true"
 
