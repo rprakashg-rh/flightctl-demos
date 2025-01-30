@@ -9,6 +9,6 @@ RUN rm -rf /opt && \
     mkdir -p /opt/crio
 
 ## Embedding flightctl configuration and certificates into image
-ADD config.yaml /etc/flightctl/
-ADD ca.crt /etc/flightctl/certs/
-ADD client-enrollment.* /etc/flightctl/certs/
+ADD ../../certs/config.yaml /etc/flightctl/
+ADD ../../certs/ca.crt /etc/flightctl/certs/
+ADD ../../certs/client-enrollment.* /etc/flightctl/certs/
