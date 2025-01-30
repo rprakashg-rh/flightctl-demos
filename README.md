@@ -7,7 +7,18 @@ This repository contains all the artifacts used in flightctl demos
 This is a sample containerized application that we want to deploy to device. Application will be installed on device as podman quadlet
 
 ```sh
+podman build -t rhde-starter .
+```
+Tag the image
 
+```sh
+podman tag rhde-starter quay.io/rgopinat/rhde-starter
+```
+
+Push the image
+
+```sh
+podman push quay.io/rgopinat/rhde-starter
 ```
 
 
@@ -23,7 +34,7 @@ podman tag imagemode-rhel quay.io/rgopinat/imagemode-rhel
 ```
 
 ### Building Anaconda ISO using Bootc Image Builder
-
+Follow steps below to build an Anaconda ISO installer image
 
 ```sh
     sudo podman run --rm \
@@ -37,4 +48,17 @@ podman tag imagemode-rhel quay.io/rgopinat/imagemode-rhel
     --type iso \
     --config /config.toml \
     quay.io/rgopinat/imagemode-rhel:latest
+```
+
+Copy the ISO file to local to build a bootable disk
+
+```
+
+```
+
+
+Building Imagemode RHEL with FDO
+
+```
+podman build -t imagemode-rhel-fdo -f images/fdo_device/Containerfile .
 ```
