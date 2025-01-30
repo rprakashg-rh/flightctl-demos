@@ -22,7 +22,7 @@ podman push quay.io/rgopinat/rhde-starter
 ```
 
 
-## Building image (Early binding)
+### Building image (Early binding)
 
 ```sh
 podman build -t imagemode-rhel -f images/device/Containerfile .
@@ -57,8 +57,37 @@ Copy the ISO file to local to build a bootable disk
 ```
 
 
-Building Imagemode RHEL with FDO
+### Building Imagemode RHEL with FDO (Late binding)
 
-```
+#### Build container
+
+```sh
 podman build -t imagemode-rhel-fdo -f images/fdo_device/Containerfile .
+```
+
+#### Tag container with registry
+```sh
+podman tag imagemode-rhel-fdo quay.io/rgopinat/imagemode-rhel-fdo
+```
+
+#### Push container image to registry
+
+```sh
+podman push quay.io/rgopinat/imagemode-rhel-fdo
+```
+
+### Build anaconda ISO with bootc image builder 
+
+```sh
+    sudo podman run --rm \
+    -it \
+    --privileged \
+    --pull=newer \
+    --security-opt label=type:unconfined_t \
+    -v /var/lib/containers/storage:/var/lib/containers/storage \
+    -v $(pwd)/images/fdo_device/config.toml:/config.toml -v $(pwd)/output:/output \
+    registry.redhat.io/rhel9/bootc-image-builder:latest \
+    --type iso \
+    --config /config.toml \
+    quay.io/rgopinat/imagemode-rhel-fdo:latest
 ```
