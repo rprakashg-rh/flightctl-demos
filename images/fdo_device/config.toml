@@ -18,7 +18,7 @@ user --name redhat --password password --plaintext --groups wheel
 rootpw --lock
 # network configuration
 network --bootproto=dhcp --device=link --activate --onboot=on
-poweroff
+reboot --eject
 
 %post --log=/var/log/anaconda/post-install.log --erroronfail
 export MANUFACTURING_SERVER_URL="http://ec2-34-210-119-200.us-west-2.compute.amazonaws.com:8080"
