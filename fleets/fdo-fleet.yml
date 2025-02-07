@@ -1,0 +1,71 @@
+apiVersion: v1alpha1
+kind: Fleet
+metadata:
+  name: "fdo-fleet"
+spec:
+  selector:
+    matchLabels:
+      fleet: "fdo-fleet"
+      fdo: true
+  template:
+    spec:
+      os:
+        image: quay.io/rgopinat/imagemode-rhel-fdo
+      config:
+      - name: configs
+        path: /etc/resolv.conf
+        content: |
+          # /etc/resolv.conf for edge devices
+          # Managed with best practices for edge deployments
+
+          # Primary and secondary DNS servers
+          nameserver 1.1.1.1       # Cloudflare DNS
+          nameserver 8.8.8.8       # Google Public DNS
+          nameserver 9.9.9.9       # Quad9 DNS
+          nameserver 192.168.1.1   # local router 
+          
+          # Optional: Define a domain for unqualified hostnames
+          domain edge.local
+
+          # Optional: Search domains for unqualified hostnames
+          search edge.local corp.home.local
+
+          # Reduce query timeout for faster failover
+          options timeout:2
+
+          # Attempt queries only once per server before failing over
+          options attempts:1
+
+          # Rotate through DNS servers for load balancing
+          options rotate
+
+          # Enable EDNS0 for better performance and support for larger responses
+          options edns0
+
+          # Ignore dynamic updates if resolv.conf is managed manually
+          options no-dynamic
+        mode: 0644  
+      resources:
+      - monitorType: CPU
+        alertRules:
+          - severity: Warning
+            duration: 10m
+            percentage: 70
+            description: 'CPU load is >70% for more than 10 minutes'
+          - severity: Critical
+            duration: 10m
+            percentage: 90
+            description: 'CPU load is >90% for more than 10 minutes'          
+        samplingInterval: 30s
+      - monitorType: Disk
+        samplingInterval: 5s
+        path: /
+        alertRules:
+        - severity: Warning
+          duration: 30m
+          percentage: 75
+          description: Disk space for application data is >75% full for over 30m.
+        - severity: Critical
+          duration: 10m
+          percentage: 90
+          description: Disk space for application data is >90% full over 10m.
