@@ -21,7 +21,7 @@ network --bootproto=dhcp --device=link --activate --onboot=on
 reboot --eject
 
 %post --log=/var/log/anaconda/post-install.log --erroronfail
-export MANUFACTURING_SERVER_URL="http://manufacturing.sandbox2519.opentlc.com"
+export MANUFACTURING_SERVER_URL="http://manufacturing.sandbox1221.opentlc.com"
 export DIUN_PUB_KEY_INSECURE="true"
 
 # For DNS resolution
