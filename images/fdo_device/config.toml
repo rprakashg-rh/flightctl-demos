@@ -4,21 +4,18 @@ diun_pub_key_insecure = "true"
 
 [customizations.installer.kickstart]
 contents = """
-lang en_GB.UTF-8
-keyboard uk
-timezone CET
-
 text --non-interactive
 zerombr
-clearpart --all --initlabel
-autopart --type=lvm
+clearpart --all --initlabel --disklabel=gpt
+autopart --noswap --type=lvm
+
 
 # user setup
 user --name redhat --password password --plaintext --groups wheel
-rootpw --lock
+
 # network configuration
 network --bootproto=dhcp --device=link --activate --onboot=on
-reboot --eject
+poweroff
 
 %post --log=/var/log/anaconda/post-install.log --erroronfail
 export MANUFACTURING_SERVER_URL="http://manufacturing.sandbox2938.opentlc.com"
