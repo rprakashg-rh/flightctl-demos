@@ -19,7 +19,7 @@ poweroff
 
 %post --log=/var/log/anaconda/post-install.log --erroronfail
 export MANUFACTURING_SERVER_URL="http://manufacturing.sandbox2938.opentlc.com"
-export DIUN_PUB_KEY_INSECURE="false"
+export DIUN_PUB_KEY_INSECURE="true"
 
 # For DNS resolution
 echo "nameserver 192.168.1.1" > /etc/resolv.conf
