@@ -30,13 +30,13 @@
 
 global:
   target: "standalone" # standalone, acm
-  baseDomain: "apps.rhem-demo.sandbox2938.opentlc.com"
+  baseDomain: "apps.rhem-demo.sandbox559.opentlc.com"
   baseDomainTls:
     cert: ""
     key: ""
   storageClassName: "gp3-csi"
   imagePullSecretName: ""
-  apiUrl: "https://api.rhem-demo.sandbox2938.opentlc.com:6443" # alternative to global.auth.k8s.externalOpenShiftApiUrl used by multiclusterhub operator
+  apiUrl: "https://api.rhem-demo.sandbox559.opentlc.com:6443" # alternative to global.auth.k8s.externalOpenShiftApiUrl used by multiclusterhub operator
   auth:
     type: "builtin" # builtin, k8s, oidc, none
     caCert: ""
